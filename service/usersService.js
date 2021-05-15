@@ -29,3 +29,7 @@ module.exports.getToken = function(credentials, retorno, erro) {
 module.exports.getExpiresByToken = function(token, retorno, erro) {
     persist.getExpiresByToken(token, retorno, erro);
 }
+
+module.exports.isAdminToken = function(token, retorno, erro) {
+    persist.isAdminToken(token, retorno, erro);
+}

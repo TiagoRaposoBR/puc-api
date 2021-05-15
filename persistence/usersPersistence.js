@@ -34,3 +34,9 @@ module.exports.getExpiresByToken = function(token, result, errorMessage) {
         }
     }, errorMessage);
 }
+
+module.exports.isAdminToken = function(token, result, errorMessage) {
+    db.executeQuery("SELECT COUNT(id) FROM users WHERE access_token LIKE '"+token+"'", (queryResult) => {
+        result(queryResult && queryResult.length == 1 && queryResult[0].count == 1);
+    }, errorMessage);
+}

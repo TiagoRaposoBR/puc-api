@@ -1,4 +1,3 @@
-const userService = require("../service/usersService");
 const crypto = require("crypto");
 const moment = require("moment");
 const sendError = require("../model/ErrorResponse").sendErrorResponse;
@@ -41,6 +40,22 @@ module.exports.isAuthorized = function(req, res, next) {
         }
     } else {
         sendError(res, 401, 'Sem cabeçalho authorization');
+    }
+}
+
+
+module.exports.isAdmin = function(req, res, next) {
+    const adminToken = req.headers['admin'];
+    if (adminToken) {
+        require("../service/usersService").isAdminToken(adminToken, (isAuthorized) => {
+            if (isAuthorized) {
+                next();
+            } else {
+                sendError(res, 401, 'Não autorizado');
+            }
+        });
+    } else {
+        sendError(res, 401, 'Não autorizado');
     }
 }
 
