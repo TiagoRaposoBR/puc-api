@@ -1,4 +1,6 @@
 const auth = require('./security/auth');
+const checkLimit = require('./security/connectionLimit');
+
 const users = require('./routes/usersRoute');
 const universe = require('./routes/universeRoute');
 const group = require('./routes/groupRoute');
@@ -8,7 +10,10 @@ const comic = require('./routes/comicRoute');
 const express = require('express');
 const port = 3000;
 const app = express();
-app.use(express.json())
+
+app.set('trust proxy', true);
+app.use(express.json());
+app.use(checkLimit);
 
 /********************** USERS ***************************/
 app.post('/api/v1/users', (req, res) => {

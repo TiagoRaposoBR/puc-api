@@ -11,8 +11,7 @@ module.exports.isAuthorized = function(req, res, next) {
             const token = splitAuth[1];
             const expires = tokenCache[token];
             // Se tem no cache
-            //if (expires) {
-            if (false) {
+            if (expires) {
                 if (!isExpired(expires)) {
                     next();
                 } else {
