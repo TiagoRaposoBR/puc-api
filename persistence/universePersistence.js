@@ -9,3 +9,9 @@ module.exports.createUniverse = function (nome, sucesso, erro) {
         }
     }, erro);
 }
+
+module.exports.listUniverse = function (page, pageSize, sucesso, erro) {
+    db.executeQuery("SELECT * FROM universe LIMIT "+pageSize+" OFFSET "+(page * pageSize), (rows) => {
+        sucesso(rows);
+    }, erro);
+}

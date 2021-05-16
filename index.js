@@ -1,5 +1,7 @@
 const auth = require('./security/auth');
-const checkLimit = require('./security/connectionLimit');
+const checkLimit = require('./middleware/connectionLimit');
+const cacheInHeader = require('./middleware/cacheHeader');
+const checkCache = require('./middleware/cacheRequests').check;
 
 const users = require('./routes/usersRoute');
 const universe = require('./routes/universeRoute');
@@ -24,16 +26,23 @@ app.get('/api/v1/token', (req, res) => {
     users.getToken(req, res);
 })
 
-app.get('/api/v1/', auth.isAuthorized, (req, res) => {
+app.get('/api/v1/', auth.isAuthorized, cacheInHeader, checkCache, (req, res) => {
     res.send('Hello World!')
 })
 
 /********************** UNIVERSE *************************/
-app.get('/api/v1/universe/:id', auth.isAuthorized, (req, res) => {
+app.get('/api/v1/universe/', auth.isAuthorized, cacheInHeader, checkCache, (req, res) => {
+    universe.listUniverse(req, res);
+})
+
+app.get('/api/v1/universe/:id', auth.isAuthorized, cacheInHeader, checkCache, (req, res) => {
     universe.getUniverse(req, res);
 })
 
 /********************** GROUP ****************************/
+app.get('/api/v1/group/', auth.isAuthorized, cacheInHeader, checkCache, (req, res) => {
+    group.listGroup(req, res);
+})
 
 /********************** CHARACTERS ***********************/
 

@@ -17,6 +17,24 @@ module.exports.createGroup = function(req, res) {
     }
 }
 
+module.exports.listGroup = function(req, res) {
+    const page = req.query.page || 0;
+    const pageSize = req.query.pageSize || 10;
+
+    service.listGroup(page, pageSize, (retorno) => {
+        const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+        retorno.forEach(group => {
+            group.url = fullUrl + '/' + group.id;
+        });
+
+        addToCache(req, retorno);
+        
+        res.status(200).json(retorno);
+    }, (status, mensagem) => {
+        res.status(status).json(mensagem);
+    });
+}
+
 module.exports.getGroup = function(req, res) {
     res.status(501).send('not implemented');
     // const id = req.params.id;

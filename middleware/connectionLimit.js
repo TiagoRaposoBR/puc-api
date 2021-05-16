@@ -1,14 +1,13 @@
 const moment = require("moment");
 const sendError = require("../model/ErrorResponse").sendErrorResponse;
 
-const initialBudget = 1000;
+const initialBudget = 100;
 const timeQuant = 1;
 const timeUnit = 'minute';
 const connectionCache = {};
 
 module.exports = function(req, res, next) {
     const conn = connectionCache[req.ip];
-    console.log('connection: ' + req.ip, conn);
 
     if (!conn) {
         connectionCache[req.ip] = getNewBudget();

@@ -2,6 +2,8 @@ const crypto = require("crypto");
 const moment = require("moment");
 const sendError = require("../model/ErrorResponse").sendErrorResponse;
 
+const expireQuant = 1;
+const expireUnit = 'hour';
 const tokenCache = {};
 
 module.exports.isAuthorized = function(req, res, next) {
@@ -68,7 +70,7 @@ module.exports.gerarChaveAleatoria = function(encoding) {
 
 module.exports.createToken = function() {
     const token = this.gerarChaveAleatoria('base64');
-    const expires = moment().add(1, 'hour').utc().toISOString();
+    const expires = moment().add(expireQuant, expireUnit).utc().toISOString();
 
     tokenCache[token] = expires;
 

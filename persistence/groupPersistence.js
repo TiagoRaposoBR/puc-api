@@ -9,3 +9,9 @@ module.exports.createGroup = function (nome, sucesso, erro) {
         }
     }, erro);
 }
+
+module.exports.listGroup = function (page, pageSize, sucesso, erro) {
+    db.executeQuery("SELECT * FROM char_group LIMIT "+pageSize+" OFFSET "+(page * pageSize), (rows) => {
+        sucesso(rows);
+    }, erro);
+}
