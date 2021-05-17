@@ -21,3 +21,5 @@ O /persistence tem as querys de acesso ao banco de dados. Sua função é fazer 
 dos métodos de query.
 
 ## Instalação
+
+sudo yum install git & git clone https://github.com/TiagoRaposoBR/puc-api.git & cd puc-api & sh install.sh
