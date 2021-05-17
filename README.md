@@ -20,6 +20,19 @@ Os /services fazem o tratamento dos dados, e contêm a lógica de negócios. Ele
 O /persistence tem as querys de acesso ao banco de dados. Sua função é fazer a requisição ao banco e devolver os dados com um tratamento básico, para que os /services tratem. Os /persistence usam o módulo /database/database-driver.js para se comunicar com o banco, isolando a configuração de conexão
 dos métodos de query.
 
-## Instalação
+## Instalação em máquina virtual
 
+Para instalar em uma máquina virtual (testada em um EC2 com Amazon Linux 2), rode o comando abaixo no terminal da máquina:
+
+```
 sudo yum install git & git clone https://github.com/TiagoRaposoBR/puc-api.git & cd puc-api & sh install.sh
+```
+
+Para rodar em um ambiente de desenvolvimento:
+
+- instale o Node.js 14.x
+- instale o PostgreSQL versão 13
+- rode o script de banco em puc-api/database/base-table.sql para criar a base de dados
+- inicie o serviço com ```# node index.js ```
+
+Se tiver problemas com portas (a padrão é a 80), troque no arquivo index.js, e reinicie o serviço.

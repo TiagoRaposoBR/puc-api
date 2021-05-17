@@ -21,12 +21,13 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install 14
 
-## baixa o repositorio do projeto
-sudo yum install git
-git clone https://github.com/TiagoRaposoBR/puc-api.git
+## coloca permissoes corretas em home
+chmod og+rX /home /home/user
 
 ## cria a tabela base no banco
-sudo -u postgres psql -f ./puc-api/database/base-table.sql
+cp ~/puc-api/database/base-table.sql ~
+sudo chown postgres ~/base-table.sql
+sudo -u postgres psql -f ~/base-table.sql
 
 ## coloca password padrao no banco
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
@@ -34,3 +35,5 @@ sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 ## instala dependencias do projeto
 cd ~/puc-api
 npm install
+
+## configura node como serviço

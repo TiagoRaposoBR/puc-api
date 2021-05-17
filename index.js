@@ -10,7 +10,7 @@ const character = require('./routes/characterRoute');
 const comic = require('./routes/comicRoute');
 
 const express = require('express');
-const port = 80;
+const port = 3000;
 const app = express();
 
 app.set('trust proxy', true);
