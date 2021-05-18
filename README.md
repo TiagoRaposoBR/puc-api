@@ -35,3 +35,11 @@ Para rodar em um ambiente de desenvolvimento:
 - rode o script de banco em puc-api/database/base-table.sql para criar a base de dados
 - execute ```# npm install``` na raiz do projeto
 - inicie o serviço com ```# node index.js ```
+
+## Usuário Administrador
+
+Para cadastrar dados no banco, é preciso usar o token de administrador. Esse usuário não é acessível pela API.
+
+O token admin padrão é o seguinte. Recomendo alterar ao instalar o banco de dados, acessando diretamente por SQL. O id do usuário admin é 1.
+
+```48yuikjrfdov09dis8w0eu34hjkgfi98d7eyu3h42tj59-ig8fru```
