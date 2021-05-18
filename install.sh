@@ -40,5 +40,7 @@ npm install
 ## faz o roteamento da porta 80 para a 3000
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
 
-## inicia serviço node (pode fechar o terminal que o serviço permanece)
-nohup node index.js
+## inicia serviço node
+sudo cp ~/puc-api/pucapi.service /lib/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl start pucapi
