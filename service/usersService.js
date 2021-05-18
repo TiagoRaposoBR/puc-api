@@ -3,8 +3,8 @@ const auth = require('../security/auth');
 const persist = require('../persistence/usersPersistence');
 
 module.exports.createUser = function(user, retorno, erro) {
-    const userkey = auth.gerarChaveAleatoria('md5');
-    const userpass = auth.gerarChaveAleatoria('md5');
+    const userkey = auth.gerarChaveAleatoria('hex');
+    const userpass = auth.gerarChaveAleatoria('hex');
 
     persist.createUser(user.name, userkey, userpass, () => {
         retorno(new UserCredentials(userkey, userpass));
