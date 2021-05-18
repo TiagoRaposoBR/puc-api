@@ -6,3 +6,9 @@ module.exports.createCharacter = function(character, retorno, erro) {
         retorno(new ObjectRef(id, character.name));
     }, erro);
 }
+
+module.exports.getCharactersByComic = function(comicId, retorno, erro) {
+    persist.getCharactersByComic(comicId, (characters) => {
+        retorno(characters);
+    }, erro);
+}

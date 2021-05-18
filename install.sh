@@ -24,10 +24,11 @@ nvm install 14
 ## coloca permissoes corretas em home
 chmod og+rX /home /home/user
 
-## cria a tabela base no banco
+## cria o esquema base no banco
 cp ~/puc-api/database/base-table.sql ~
 sudo chown postgres ~/base-table.sql
-sudo -u postgres psql -f ~/base-table.sql
+sudo -u postgres psql -U postgres -c 'CREATE DATABASE pucapi'
+sudo -u postgres psql -U postgres -d pucapi -f ~/base-table.sql
 
 ## coloca password padrao no banco
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
@@ -36,4 +37,8 @@ sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 cd ~/puc-api
 npm install
 
-## configura node como serviço
+## faz o roteamento da porta 80 para a 3000
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
+
+## inicia serviço node (pode fechar o terminal que o serviço permanece)
+nohup node index.js

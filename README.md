@@ -33,6 +33,5 @@ Para rodar em um ambiente de desenvolvimento:
 - instale o Node.js 14.x
 - instale o PostgreSQL versão 13
 - rode o script de banco em puc-api/database/base-table.sql para criar a base de dados
+- execute ```# npm install``` na raiz do projeto
 - inicie o serviço com ```# node index.js ```
-
-Se tiver problemas com portas (a padrão é a 80), troque no arquivo index.js, e reinicie o serviço.

@@ -25,3 +25,16 @@ module.exports.createComic = function (comicData, sucesso, erro) {
         }
     }, erro);
 }
+
+module.exports.getComic = function(id, sucesso, erro) {
+    db.executeQuery("SELECT c.id, c.title, c.issue_number, c.release_date, g.id as group_id, g.nome as group_name, "
+        + " u.id as universe_id, u.nome as universe_name FROM comics c"
+        + " INNER JOIN char_group g ON g.id = c.group_id "
+        + " INNER JOIN universe u ON u.id = c.universe_id WHERE c.id = " + id, (rows) => {
+            if (rows && rows.length == 1) {
+                sucesso(rows[0]);
+            } else {
+                sucesso(undefined);
+            }
+        }, erro);
+}

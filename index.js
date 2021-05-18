@@ -47,6 +47,9 @@ app.get('/api/v1/group/', auth.isAuthorized, cacheInHeader, checkCache, (req, re
 /********************** CHARACTERS ***********************/
 
 /********************** COMICS ***************************/
+app.get('/api/v1/comics/:id', auth.isAuthorized, cacheInHeader, checkCache, (req, res) => {
+    comic.getComic(req, res);
+})
 
 /********************** YEAR *****************************/
 

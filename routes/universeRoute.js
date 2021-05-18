@@ -37,7 +37,7 @@ module.exports.listUniverse = function(req, res) {
 }
 
 module.exports.getUniverse = function(req, res) {
-    res.status(501).send('not implemented');
+    res.status(501).json('not implemented');
     // const id = req.params.id;
 
     // if (!id) {

@@ -25,3 +25,10 @@ module.exports.createCharacter = function (characterData, sucesso, erro) {
         }
     }, erro);
 }
+
+module.exports.getCharactersByComic = function(comicId, sucesso, erro) {
+    db.executeQuery("SELECT c.id, c.nome FROM characters c LEFT JOIN comics_characters_join cj ON c.id = cj.character_id "
+        + " WHERE cj.comic_id = " + comicId, (rows) => {
+            sucesso(rows);
+        }, erro);
+}
