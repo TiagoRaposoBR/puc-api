@@ -4,7 +4,7 @@ Description=API Multiverso DC
 [Service]
 Type=simple
 User=ec2-user
-ExecStart=/home/ec2-user/.nvm/versions/node/v14.17.0/bin/node /home/ec2-user/pucapi/index.js
+ExecStart=/home/ec2-user/.nvm/versions/node/v14.17.0/bin/node /home/ec2-user/puc-api/index.js
 Restart=on-failure
 
 [Install]
